@@ -1,0 +1,104 @@
+{
+    "info": {
+      "name": "Lambda Function API Calls",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Get Bayi Details - Success",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"islermeta@gmail.com\"\n}"
+          },
+          "url": {
+            "raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/",
+            "protocol": "https",
+            "host": [
+              "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+              "lambda-url",
+              "us-east-1",
+              "on",
+              "aws"
+            ],
+            "path": [
+              ""
+            ]
+          },
+          "description": "Successful request to get bayi details"
+        },
+        "response": []
+      },
+      {
+        "name": "Get Bayi Details - Email Missing",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{}"
+          },
+          "url": {
+            "raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/",
+            "protocol": "https",
+            "host": [
+              "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+              "lambda-url",
+              "us-east-1",
+              "on",
+              "aws"
+            ],
+            "path": [
+              ""
+            ]
+          },
+          "description": "Request with missing email"
+        },
+        "response": []
+      },
+      {
+        "name": "Get Bayi Details - User Not Found",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"nonexistent@example.com\"\n}"
+          },
+          "url": {
+            "raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/",
+            "protocol": "https",
+            "host": [
+              "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+              "lambda-url",
+              "us-east-1",
+              "on",
+              "aws"
+            ],
+            "path": [
+              ""
+            ]
+          },
+          "description": "Request with an email that doesn't exist in the database"
+        },
+        "response": []
+      }
+    ]
+  }
