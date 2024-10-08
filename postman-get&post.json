@@ -1,0 +1,161 @@
+{
+	"info": {
+		"name": "Lambda Function Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - Successful Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/?email=islermeta@gmail.com",
+					"protocol": "https",
+                    "host": [
+                        "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+                        "lambda-url",
+                        "us-east-1",
+                        "on",
+                        "aws"
+                      ],
+					"query": [
+						{
+							"key": "email",
+							"value": "islermeta@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Missing Email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/",
+					"protocol": "https",
+                    "host": [
+                        "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+                        "lambda-url",
+                        "us-east-1",
+                        "on",
+                        "aws"
+                      ]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - User Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/?email=nonexistent@example.com",
+					"protocol": "https",
+                    "host": [
+                        "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+                        "lambda-url",
+                        "us-east-1",
+                        "on",
+                        "aws"
+                      ],
+					"query": [
+						{
+							"key": "email",
+							"value": "nonexistent@example.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Successful Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"islermeta@gmail.com\"\n}"
+				},
+				"url": {
+                    "raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/",
+                    "protocol": "https",
+                    "host": [
+                      "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+                      "lambda-url",
+                      "us-east-1",
+                      "on",
+                      "aws"
+                    ]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Missing Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+                    "raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/",
+                    "protocol": "https",
+                    "host": [
+                      "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+                      "lambda-url",
+                      "us-east-1",
+                      "on",
+                      "aws"
+                    ]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - User Not Found",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"nonexistent@example.com\"\n}"
+				},
+				"url": {
+                    "raw": "https://xn27hcheocapw2pocn6jt7xreu0gmzkn.lambda-url.us-east-1.on.aws/",
+                    "protocol": "https",
+                    "host": [
+                      "xn27hcheocapw2pocn6jt7xreu0gmzkn",
+                      "lambda-url",
+                      "us-east-1",
+                      "on",
+                      "aws"
+                    ]
+				}
+			},
+			"response": []
+		}
+	]
+}
