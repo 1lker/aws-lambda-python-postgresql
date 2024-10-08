@@ -2,6 +2,7 @@ import json
 import os
 import sys
 import base64
+from urllib.parse import parse_qs
 
 # Add the package folder to the Python path
 package_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'package')
@@ -66,20 +67,37 @@ def lambda_handler(event, context):
 
     try:
         # Check if it's GET or POST request
-        http_method = event.get('httpMethod', 'GET')
-        
+        http_method = event.get('requestContext', {}).get('http', {}).get('method', 'GET')
+        print(f"HTTP Method: {http_method}")
+
         if http_method == 'GET':
             # For GET requests, extract email from query string parameters
             query_params = event.get('queryStringParameters', {}) or {}
             email = query_params.get('email')
+            print(f"GET request - Email from query params: {email}")
         elif http_method == 'POST':
             # For POST requests, extract email from body
+            print("POST request received")
+            print(f"Request body: {event.get('body')}")
+            print(f"Is base64 encoded: {event.get('isBase64Encoded', False)}")
+            
             if event.get('isBase64Encoded', False):
                 body = base64.b64decode(event['body']).decode('utf-8')
             else:
                 body = event.get('body', '{}')
-            body_json = json.loads(body)
-            email = body_json.get('email')
+            
+            print(f"Decoded body: {body}")
+            
+            try:
+                body_json = json.loads(body)
+                email = body_json.get('email')
+                print(f"POST request - Email from body: {email}")
+            except json.JSONDecodeError as e:
+                print(f"JSON decode error: {str(e)}")
+                return {
+                    'statusCode': 400,
+                    'body': json.dumps({'error': 'Invalid JSON in request body'})
+                }
         else:
             return {
                 'statusCode': 405,
@@ -117,11 +135,6 @@ def lambda_handler(event, context):
             'body': json.dumps(bayi_details)
         }
     
-    except json.JSONDecodeError:
-        return {
-            'statusCode': 400,
-            'body': json.dumps({'error': 'Invalid JSON in request body'})
-        }
     except Exception as e:
         print(f"Error occurred: {str(e)}")  # Log any exceptions
         return {
